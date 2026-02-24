@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# REJECTED™
 
-## Getting Started
+*“Collect 100 Rejections. Kill Your Fear.”*
 
-First, run the development server:
+## 🎯 Purpose
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+REJECTED™ is a psychology-grounded exposure therapy SaaS application. It gamifies the experience of seeking rejection to help individuals—specifically young men—build courage, social skill, and resilience. 
+
+By flipping the script on failure and making rejection the explicit goal (the "30 Day Challenge"), the system systematically desensitizes users to the sting of "no." The core philosophy is simple: **Action absorbs anxiety. Avoidance creates it.**
+
+## ⚙️ Technical Details & Stack
+
+This application is built as a complete, production-ready Full-Stack SaaS utilizing modern web technologies:
+
+*   **Frontend & Routing:** Next.js 14 (App Router) with TypeScript.
+*   **Styling:** Tailwind CSS combined with Shadcn UI components for a robust, accessible, and ultra-modern tech-noir/cyberpunk aesthetic.
+*   **Authentication:** NextAuth.js v5 (Auth.js) configured for robust session management.
+*   **Database:** Supabase (Postgres) handling structured data for Users, Rejection Logs, and AI Insights.
+*   **AI Integration:** API Routes designed to communicate with the ADAL AI engine, which processes log payloads and returns structured psychological reframes, cognitive distortion detection, and courage score calculations.
+*   **Deployment:** Optimized for Vercel edge networks.
+
+## 🏗️ Architecture Diagram
+
+The following Mermaid diagram outlines the high-level system architecture and data flow:
+
+```mermaid
+graph TD
+    %% Define styles for nodes
+    classDef client fill:#0ea5e9,stroke:#0f172a,stroke-width:2px,color:#fff;
+    classDef server fill:#10b981,stroke:#0f172a,stroke-width:2px,color:#fff;
+    classDef db fill:#8b5cf6,stroke:#0f172a,stroke-width:2px,color:#fff;
+    classDef external fill:#f43f5e,stroke:#0f172a,stroke-width:2px,color:#fff;
+
+    %% Nodes
+    User(("User (Browser)")):::client
+    NextApp["Next.js Application\n(Frontend UI)"]:::client
+    NextAuth["NextAuth.js v5\n(Session Management)"]:::server
+    NextAPI["API Routes\n(/api/analyze-rejection)"]:::server
+    SupabaseDB[("Supabase\n(PostgreSQL DB)")]:::db
+    AdalAPI{"ADAL AI API"}:::external
+
+    %% Flow
+    User -->|Views Dashboard & Submits Log| NextApp
+    User -->|Authenticates| NextAuth
+    
+    NextAuth <-->|Verifies Credentials| SupabaseDB
+    NextApp <-->|Reads Stats/History| SupabaseDB
+    
+    NextApp -->|POST /api/analyze-rejection| NextAPI
+    NextAPI -->|Sends Context Payload| AdalAPI
+    
+    AdalAPI -.->|Returns JSON Reframe| NextAPI
+    NextAPI -->|Saves Insights| SupabaseDB
+    NextAPI -.->|Returns Result to UI| NextApp
+
+    %% Subgraphs for logical grouping
+    subgraph Frontend Subsystem
+    NextApp
+    end
+
+    subgraph Backend Subsystem
+    NextAuth
+    NextAPI
+    end
+
+    subgraph External Dependencies
+    SupabaseDB
+    AdalAPI
+    end
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To run the REJECTED™ application locally:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1.  **Clone the repository and navigate to the project directory:**
+    ```bash
+    cd rejected-app
+    ```
 
-## Learn More
+2.  **Install the dependencies:**
+    ```bash
+    npm install
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+3.  **Configure Environment Variables:**
+    Copy the `.env.example` file to `.env.local` and fill in your Supabase and Auth credentials:
+    ```bash
+    cp .env.example .env.local
+    ```
+    *Ensure `AUTH_SECRET` is set for NextAuth to function properly.*
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4.  **Run the Development Server:**
+    ```bash
+    npm run dev
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5.  Open [http://localhost:3000](http://localhost:3000) in your browser to access the terminal.
