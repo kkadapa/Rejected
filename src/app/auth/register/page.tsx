@@ -1,13 +1,10 @@
-import { Metadata } from "next";
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Sparkles } from "lucide-react";
-
-export const metadata: Metadata = {
-    title: "Register | REJECTED™",
-};
 
 export default function RegisterPage() {
     return (
@@ -32,7 +29,12 @@ export default function RegisterPage() {
                     </p>
                 </div>
 
-                <form className="mt-8 space-y-6">
+                <form className="mt-8 space-y-6" action="/auth/login" method="POST" onSubmit={(e) => {
+                    e.preventDefault();
+                    // In a real app, you would call your API here.
+                    // For the hackathon demo, we redirect to login.
+                    window.location.href = '/auth/login';
+                }}>
                     <div className="space-y-4 rounded-md shadow-sm">
                         <div>
                             <Label htmlFor="name" className="sr-only">Operative Name</Label>

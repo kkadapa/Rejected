@@ -16,7 +16,7 @@ This application is built as a complete, production-ready Full-Stack SaaS utiliz
 *   **Styling:** Tailwind CSS combined with Shadcn UI components for a robust, accessible, and ultra-modern tech-noir/cyberpunk aesthetic.
 *   **Authentication:** NextAuth.js v5 (Auth.js) configured for robust session management.
 *   **Database:** Supabase (Postgres) handling structured data for Users, Rejection Logs, and AI Insights.
-*   **AI Integration:** API Routes designed to communicate with the ADAL AI engine, which processes log payloads and returns structured psychological reframes, cognitive distortion detection, and courage score calculations.
+*   **AI Integration:** API Routes designed to communicate with an AI engine, which processes log payloads and returns structured psychological reframes, cognitive distortion detection, and courage score calculations.
 *   **Deployment:** Optimized for Vercel edge networks.
 
 ## 🏗️ Architecture Diagram
@@ -37,7 +37,7 @@ graph TD
     NextAuth["NextAuth.js v5\n(Session Management)"]:::server
     NextAPI["API Routes\n(/api/analyze-rejection)"]:::server
     SupabaseDB[("Supabase\n(PostgreSQL DB)")]:::db
-    AdalAPI{"ADAL AI API"}:::external
+    AI_API{"AI API"}:::external
 
     %% Flow
     User -->|Views Dashboard & Submits Log| NextApp
@@ -47,9 +47,9 @@ graph TD
     NextApp <-->|Reads Stats/History| SupabaseDB
     
     NextApp -->|POST /api/analyze-rejection| NextAPI
-    NextAPI -->|Sends Context Payload| AdalAPI
+    NextAPI -->|Sends Context Payload| AI_API
     
-    AdalAPI -.->|Returns JSON Reframe| NextAPI
+    AI_API -.->|Returns JSON Reframe| NextAPI
     NextAPI -->|Saves Insights| SupabaseDB
     NextAPI -.->|Returns Result to UI| NextApp
 
@@ -65,7 +65,7 @@ graph TD
 
     subgraph External Dependencies
     SupabaseDB
-    AdalAPI
+    AI_API
     end
 ```
 

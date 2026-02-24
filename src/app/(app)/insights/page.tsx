@@ -13,7 +13,7 @@ export default function InsightsPage() {
                 <h1 className="text-3xl font-black text-white tracking-widest flex items-center gap-3">
                     <BrainCircuit className="w-8 h-8 text-cyan-500" /> AI INSIGHTS_
                 </h1>
-                <p className="text-slate-400 font-mono text-sm mt-1">ADAL COGNITIVE ANALYSIS LOG.</p>
+                <p className="text-slate-400 font-mono text-sm mt-1">COGNITIVE ANALYSIS LOG.</p>
             </div>
 
             <div className="space-y-6">

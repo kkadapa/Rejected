@@ -94,7 +94,7 @@ export default function LandingPage() {
           <div className="p-8 border border-slate-800/50 bg-slate-900/20 backdrop-blur-sm group hover:border-emerald-500/30 transition-colors">
             <Cpu className="w-10 h-10 text-emerald-500 mb-6" />
             <h3 className="text-xl font-bold text-white tracking-wider mb-2">AI REFLECTION</h3>
-            <p className="text-slate-400 font-light text-sm">Log the event. Our ADAL-powered analysis reframes the experience positively, highlighting growth patterns and killing cognitive distortions.</p>
+            <p className="text-slate-400 font-light text-sm">Log the event. Our AI-powered analysis reframes the experience positively, highlighting growth patterns and killing cognitive distortions.</p>
           </div>
           <div className="p-8 border border-slate-800/50 bg-slate-900/20 backdrop-blur-sm group hover:border-cyan-500/30 transition-colors">
             <Sparkles className="w-10 h-10 text-cyan-500 mb-6" />

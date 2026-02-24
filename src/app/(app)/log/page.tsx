@@ -81,7 +81,7 @@ export default function LogPage() {
                     <div className="bg-rose-950/20 border border-rose-900/50 p-4 mt-8 flex items-start gap-4">
                         <AlertTriangle className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
                         <div className="text-xs text-rose-200/70 font-mono leading-relaxed">
-                            WARNING: Submitting this log will initiate ADAL AI psychological analysis. Ensure your report is honest. The system will detect evasion.
+                            WARNING: Submitting this log will initiate AI psychological analysis. Ensure your report is honest. The system will detect evasion.
                         </div>
                     </div>
 
