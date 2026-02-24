@@ -89,7 +89,7 @@ export default function LandingPage() {
           <div className="p-8 border border-slate-800/50 bg-slate-900/20 backdrop-blur-sm group hover:border-cyan-500/30 transition-colors">
             <ShieldAlert className="w-10 h-10 text-rose-500 mb-6" />
             <h3 className="text-xl font-bold text-white tracking-wider mb-2">SEEK REJECTION</h3>
-            <p className="text-slate-400 font-light text-sm">Flip the script on failure. By making "no" the explicit goal, you systematically desensitize yourself to the sting of rejection.</p>
+            <p className="text-slate-400 font-light text-sm">Flip the script on failure. By making &quot;no&quot; the explicit goal, you systematically desensitize yourself to the sting of rejection.</p>
           </div>
           <div className="p-8 border border-slate-800/50 bg-slate-900/20 backdrop-blur-sm group hover:border-emerald-500/30 transition-colors">
             <Cpu className="w-10 h-10 text-emerald-500 mb-6" />

@@ -13,11 +13,38 @@ export default function LogPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
-        // Mock simulation
-        setTimeout(() => {
+
+        try {
+            const formData = {
+                rejection_type: (document.getElementById('type') as HTMLSelectElement).value,
+                description: (document.getElementById('description') as HTMLTextAreaElement).value,
+                anxiety_before: parseInt((document.getElementById('anxietyBefore') as HTMLInputElement).value),
+                anxiety_after: parseInt((document.getElementById('anxietyAfter') as HTMLInputElement).value)
+            };
+
+            const res = await fetch('/api/analyze-rejection', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+
+                // Save to localStorage
+                const existingLogs = JSON.parse(localStorage.getItem('rejected_logs') || '[]');
+                existingLogs.unshift(data.analysis); // Add to beginning of array
+                localStorage.setItem('rejected_logs', JSON.stringify(existingLogs));
+
+                window.location.href = '/insights';
+            } else {
+                console.error("Failed to analyze rejection.");
+                setIsSubmitting(false);
+            }
+        } catch (error) {
+            console.error("Error submitting log:", error);
             setIsSubmitting(false);
-            window.location.href = '/insights';
-        }, 1500);
+        }
     };
 
     return (

@@ -1,4 +1,5 @@
-import NextAuth from "next-auth";
+import NextAuth, { Session } from "next-auth";
+import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
@@ -28,7 +29,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         signIn: "/auth/login",
     },
     callbacks: {
-        async session({ session, token }: any) {
+        async session({ session, token }: { session: Session; token: JWT }) {
             if (session?.user && token?.sub) {
                 session.user.id = token.sub;
             }
