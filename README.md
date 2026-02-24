@@ -1,5 +1,7 @@
 # REJECTED™
 
+![REJECTED™ Demo Screenshot](/rejected-demo.png)
+
 *“Collect 100 Rejections. Kill Your Fear.”*
 
 ## 🎯 Purpose
